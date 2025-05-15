@@ -93,7 +93,7 @@
         as much as possible, but sometimes it needs to be used. We apologize for any inconvenience and hope you understand.</div>
     </noscript>
     <div id="logo">
-      <h1><a href="/"><%= h settings.name %></a> <small>YARD Documentation Server</small></h1>
+      <h1><a href="/"><%= h settings.name %></a> <small>Modules and Documentation</small></h1>
     </div>
 
     <% if defined? settings.tender %>
@@ -145,7 +145,7 @@
 
     <div id="footer">
       <p><a href="https://github.com/voxpupuli/puppetmodule.info"><%= h settings.name %></a> is powered by <a href="https://yardoc.org/">yard</a> <%= YARD::VERSION %> (ruby-<%= RUBY_VERSION %>)</p>
-      <p>&copy; 2015 DOCMETA, LLC + 2017-2022 Dominic Cleal + <a href="https://voxpupli.org">2022-2023 Vox Pupuli</a></p>
+      <p>&copy; 2015 DOCMETA, LLC + 2017-2022 Dominic Cleal + <a href="https://voxpupli.org">2022-<%= Time.now.year %> Vox Pupuli</a></p>
       <% if defined? settings.sponsor %>
         <div class="sponsor">
           <p>Sponsored by</p>

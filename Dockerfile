@@ -1,4 +1,4 @@
-FROM ruby:3.0
+FROM ruby:3.4
 MAINTAINER Vox Pupuli <voxpupuli@groups.io>
 
 ENV RACK_ENV production
@@ -7,7 +7,7 @@ ENV RACK_ENV production
 ADD ./Gemfile /app/Gemfile
 ADD ./Gemfile.lock /app/Gemfile.lock
 WORKDIR /app
-RUN bundle --without test
+RUN bundle install --without test
 
 # Rest of app
 ADD . /app

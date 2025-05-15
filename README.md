@@ -1,5 +1,4 @@
-PuppetModule.info: Puppet Strings Doc Server
-============================================
+# PuppetModule.info: Puppet Strings Doc Server
 
 PuppetModule.info is the next generation Puppet module doc server.
 
@@ -14,15 +13,14 @@ It relies on:
 * [RubyDoc.info](https://github.com/docmeta/rubydoc.info)
 * [YARD](https://github.com/lsegal/yard)
 
-Getting Started
----------------
+## Getting Started
 
-This site is a public service and is community-supported. Patches and
-enhancements are welcome.
+This site is a public service and is community-supported.
+Patches and enhancements are welcome.
 
 Running the doc server locally is easy:
 
-```
+```shell
 git clone git://github.com/voxpupuli/puppetmodule.info
 cd puppetmodule.info
 bundle config --local path .vendor/
@@ -31,8 +29,7 @@ bundle exec rake modules:update
 bundle exec puma --config config/puma.rb
 ```
 
-Rake tasks
-----------
+## Rake tasks
 
 Important rake tasks for deployment:
 
@@ -46,8 +43,7 @@ For development:
 * `rake modules:update MODULE_UPDATER_LIMIT=true` - import only the first page
   of Forge modules for a small dataset, fast and reduces load.
 
-Thanks
-------
+## Thanks
 
 PuppetModule.info was authored and maintained by Dominic Cleal, and is unaffiliated to Puppet.
 RubyDoc.info was created by Loren Segal (YARD) and Nick Plante (rdoc.info) and is a project of DOCMETA, LLC.
@@ -56,4 +52,4 @@ Additional help was provided by [YARD's friendly developer community](https://gi
 Dominic ran the site for years, until he donated it to Vox Pupuli.
 Pull requests welcome!
 
-(c) 2015 DOCMETA LLC, 2017 Dominic Cleal, 2022-2023 Vox Pupuli. This code is distributed under the MIT license.
+(c) 2015 DOCMETA LLC, 2017 Dominic Cleal, 2022-2025 Vox Pupuli. This code is distributed under the MIT license.
