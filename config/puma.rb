@@ -22,7 +22,7 @@ port ENV.fetch('PORT') { 8080 }
 #
 # workers ENV.fetch('WORKERS') { 1 }.to_i
 
-environment ENV.fetch("RAILS_ENV") { "development" }
+environment ENV.fetch("RACK_ENV") { "development" }
 
 # Specifies the `pidfile` that Puma will use.
 pidfile ENV.fetch("PIDFILE") { 'tmp/pids/server.pid' }

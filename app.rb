@@ -1,7 +1,7 @@
 require File.join(File.dirname(__FILE__), 'init')
 
 require 'yard'
-require 'sinatra'
+require 'sinatra/base'
 require 'json'
 require 'fileutils'
 require 'airbrake'
@@ -26,9 +26,6 @@ require 'digest/sha2'
 require 'rack/etag'
 require 'version_sorter'
 
-class Hash; alias blank? empty? end
-class NilClass; def blank?; true end end
-
 class NoCacheEmptyBody
   def initialize(app) @app = app end
   def call(env)
@@ -47,8 +44,13 @@ class DocServer < Sinatra::Base
     caching = %w(staging production).include?(ENV['RACK_ENV']) ? $CONFIG.caching : false
     {
       :libraries => {},
-      :options => {caching: caching, single_library: false},
-      :server_options => {DocumentRoot: STATIC_PATH}
+      :options => {
+        caching: caching,
+        single_library: false
+      },
+      :server_options => {
+        DocumentRoot: STATIC_PATH
+      },
     }
   end
 
@@ -183,14 +185,12 @@ class DocServer < Sinatra::Base
   use Rack::Head
   use NoCacheEmptyBody
 
-  enable :static
   enable :dump_errors
   enable :lock
   enable :logging
   disable :raise_errors
 
-  set :views, TEMPLATES_PATH
-  set :public_folder, STATIC_PATH
+  set :views, Proc.new { File.join(root, "templates") }
   set :repos, REPOS_PATH
   set :tmp, TMP_PATH
 
@@ -501,6 +501,16 @@ class DocServer < Sinatra::Base
 
   get(%r{/(?:projects|rdoc)/([^/]+)/([^/]+)(/?.*)}) do |user, proj, extra|
     redirect("/github/#{user}/#{proj}", 301)
+  end
+
+  # fix broken static links
+  get %r{/static/modules/(.+\.css)} do |path|
+    redirect "/css/#{File.basename(path)}", 301
+  end
+
+  # fix broken static links
+  get %r{/static/modules/(.+\.js)} do |path|
+    redirect "/js/#{File.basename(path)}", 301
   end
 
   # Root URL redirection
